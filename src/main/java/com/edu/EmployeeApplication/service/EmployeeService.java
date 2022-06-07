@@ -20,4 +20,6 @@ public interface EmployeeService {
 
 	String deleteEmployee(long id);
 
+	List<Employee> getEmployeeByFirstName(String firstName);
+
 }

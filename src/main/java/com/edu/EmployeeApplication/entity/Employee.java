@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity(name="employeetbl")
+@Entity//(name="employeetbl")
 public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,6 +19,12 @@ public class Employee {
 	private String email;
 	private String contactNo;
 	private String designation;
+	
+	@ManyToOne
+	@JoinColumn(name="deptId")
+	private Department department;
+	
+	
 	
 	public long getId() {
 		return id;

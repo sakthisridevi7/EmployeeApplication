@@ -1,10 +1,13 @@
 package com.edu.EmployeeApplication.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "Departmenttbl")
 public class Department {
@@ -17,6 +20,9 @@ public class Department {
 	private String deptName;
 	private String location;
 	private long hodId;
+	
+	@OneToMany(mappedBy="department")
+	private List<Employee> employees;
 	
 	public long getdId() {
 		return dId;

@@ -69,6 +69,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return "Record is deleted successfully";
 		
 	}
+
+	@Override
+	public List<Employee> getEmployeeByFirstName(String firstName) {
+		// TODO Auto-generated method stub
+		return employeerepository.getEmployeeByFirstName(firstName);
+	}
 	
 		
 

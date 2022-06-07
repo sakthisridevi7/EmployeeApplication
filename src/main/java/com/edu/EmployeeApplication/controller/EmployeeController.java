@@ -2,6 +2,7 @@ package com.edu.EmployeeApplication.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,7 @@ import com.edu.EmployeeApplication.service.EmployeeService;
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
-	
+	@Autowired
 	EmployeeService employeeservice;
 	
 	//Request Body
@@ -59,5 +60,11 @@ public class EmployeeController {
 		return new ResponseEntity<String>(employeeservice.deleteEmployee(id), HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/GetByFirstName/{firstName}")
+	public List<Employee> getEmployeeByFirstName(@PathVariable("firstName") String firstName){
+		return employeeservice.getEmployeeByFirstName(firstName);
+	}
+	
 
 }
