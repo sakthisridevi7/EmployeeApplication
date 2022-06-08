@@ -75,6 +75,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated method stub
 		return employeerepository.getEmployeeByFirstName(firstName);
 	}
+
+	@Override
+	public List<Employee> getEmployeeByFullName(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return employeerepository.getEmployeeByFullName(firstName,lastName);
+	}
 	
 		
 

@@ -1,10 +1,14 @@
 package com.edu.EmployeeApplication.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity//(name="employeetbl")
@@ -24,7 +28,9 @@ public class Employee {
 	@JoinColumn(name="deptId")
 	private Department department;
 	
-	
+	@ManyToMany
+	@JoinTable(name="employeeProject",joinColumns= @JoinColumn(name="empId"), inverseJoinColumns = @JoinColumn(name="projectId"))
+	private List<Projects> projects;
 	
 	public long getId() {
 		return id;

@@ -22,4 +22,6 @@ public interface EmployeeService {
 
 	List<Employee> getEmployeeByFirstName(String firstName);
 
+	List<Employee> getEmployeeByFullName(String firstName, String lastName);
+
 }

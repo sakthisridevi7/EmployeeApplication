@@ -65,6 +65,10 @@ public class EmployeeController {
 	public List<Employee> getEmployeeByFirstName(@PathVariable("firstName") String firstName){
 		return employeeservice.getEmployeeByFirstName(firstName);
 	}
+	@GetMapping("/getEmployeeByFullName/{firstName}/{lastName}")
+	public List<Employee> getEmployeeByFullName(@PathVariable("firstName")String firstName,@PathVariable("lastName") String lastName){
+		return employeeservice.getEmployeeByFullName(firstName , lastName);
+	}
 	
 
 }
