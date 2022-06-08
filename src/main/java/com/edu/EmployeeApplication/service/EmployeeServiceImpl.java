@@ -11,31 +11,31 @@ import exception.ResourceNotFoundException;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
-	EmployeeRepository employeerepository;
+	EmployeeRepository employeeRepository;
 	
 
-	public EmployeeServiceImpl(EmployeeRepository employeerepository) {
+	public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
 		super();
-		this.employeerepository = employeerepository;
+		this.employeeRepository = employeeRepository;
 	}
 
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		
-		 return employeerepository.save(employee);
+		 return employeeRepository.save(employee);
 		
 	}
 	@Override
 	public List<Employee> getEmployeeList() {
 		// TODO Auto-generated method stub
-		return employeerepository.findAll();
+		return employeeRepository.findAll();
 		
 	}
 	
 	@Override
 	public Employee getEmployeeById(long id) {
 		Employee employee = new Employee();
-		employee = employeerepository.findById(id).orElseThrow(
+		employee = employeeRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFoundException("Employee","Id",id));
 		return employee;
 	}
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee updateEmployee(long id , Employee employee) {
 		// TODO Auto-generated method stub
 		Employee emp = new Employee();
-		emp = employeerepository.findById(id).orElseThrow(
+		emp = employeeRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFoundException("Employee","Id",id));
 		emp.setEmdId(employee.getEmdId());
 		emp.setFirstName(employee.getFirstName());
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		emp.setDesignation(employee.getDesignation());
 		
 		
-		employeerepository.save(emp);
+		employeeRepository.save(emp);
 		return emp;
 	}
 
@@ -62,10 +62,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String deleteEmployee(long id) {
 		// TODO Auto-generated method stub
 		Employee employee = new Employee();
-		employee = employeerepository.findById(id).orElseThrow(
+		employee = employeeRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFoundException("Employee","Id",id));
 		
-		employeerepository.deleteById(id);
+		employeeRepository.deleteById(id);
 		return "Record is deleted successfully";
 		
 	}
@@ -73,13 +73,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getEmployeeByFirstName(String firstName) {
 		// TODO Auto-generated method stub
-		return employeerepository.getEmployeeByFirstName(firstName);
+		return employeeRepository.getEmployeeByFirstName(firstName);
 	}
 
 	@Override
 	public List<Employee> getEmployeeByFullName(String firstName, String lastName) {
 		// TODO Auto-generated method stub
-		return employeerepository.getEmployeeByFullName(firstName,lastName);
+		return employeeRepository.getEmployeeByFullName(firstName,lastName);
+	}
+
+	@Override
+	public List<Employee> getEmployeeByLastName(String lastName) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findByLastName(lastName);
 	}
 	
 		

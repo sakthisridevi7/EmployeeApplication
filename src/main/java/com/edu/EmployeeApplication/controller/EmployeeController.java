@@ -21,53 +21,57 @@ import com.edu.EmployeeApplication.service.EmployeeService;
 @RequestMapping("/api/employee")
 public class EmployeeController {
 	@Autowired
-	EmployeeService employeeservice;
+	EmployeeService employeeService;
 	
 	//Request Body
-	public EmployeeController(EmployeeService employeeservice) {
+	public EmployeeController(EmployeeService employeeService) {
 		super();
-		this.employeeservice = employeeservice;
+		this.employeeService = employeeService;
 	}
 	@PostMapping
 	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
 		
-		return new ResponseEntity<Employee>(employeeservice.saveEmployee(employee), HttpStatus.CREATED);
+		return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
 		
 		
 	}
 	@GetMapping
 	public List<Employee> getEmployeeList()
 	{
-		return employeeservice.getEmployeeList();
+		return employeeService.getEmployeeList();
 		
 		
 	}
 	//api/employee/id
 	@GetMapping("/{id}")
 	public Employee getEmployeeById(@PathVariable("id") long id) {
-		return employeeservice.getEmployeeById(id);
+		return employeeService.getEmployeeById(id);
 	}
 	@PutMapping("/{id}")
 	public Employee updateEmployee(@PathVariable("id") long id ,@RequestBody Employee employee)
 	{
-		return employeeservice.updateEmployee(id , employee);
+		return employeeService.updateEmployee(id , employee);
 		
 		
 	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id)
 	{
-		return new ResponseEntity<String>(employeeservice.deleteEmployee(id), HttpStatus.OK);
+		return new ResponseEntity<String>(employeeService.deleteEmployee(id), HttpStatus.OK);
 		
 	}
 	
 	@GetMapping("/GetByFirstName/{firstName}")
 	public List<Employee> getEmployeeByFirstName(@PathVariable("firstName") String firstName){
-		return employeeservice.getEmployeeByFirstName(firstName);
+		return employeeService.getEmployeeByFirstName(firstName);
 	}
-	@GetMapping("/getEmployeeByFullName/{firstName}/{lastName}")
+	@GetMapping("/GetByLastName/{lastName}")
+	public List<Employee> getEmployeeByLastName(@PathVariable("lastName") String lastName){
+		return employeeService.getEmployeeByLastName(lastName);
+	}
+	@GetMapping("/GetEmployeeByFullName/{firstName}/{lastName}")
 	public List<Employee> getEmployeeByFullName(@PathVariable("firstName")String firstName,@PathVariable("lastName") String lastName){
-		return employeeservice.getEmployeeByFullName(firstName , lastName);
+		return employeeService.getEmployeeByFullName(firstName , lastName);
 	}
 	
 
