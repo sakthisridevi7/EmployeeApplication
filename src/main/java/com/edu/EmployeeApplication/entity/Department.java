@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name = "Departmenttbl")
 public class Department {
 	@Id
@@ -22,6 +24,7 @@ public class Department {
 	private long hodId;
 	
 	@OneToMany(mappedBy="department")
+	@JsonIgnoreProperties("department")
 	private List<Employee> employees;
 	
 	public long getdId() {

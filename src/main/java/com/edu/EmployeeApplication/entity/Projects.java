@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Projects {
 	@Id
@@ -17,6 +19,7 @@ public class Projects {
 	private Date endDate;
 	
 	@ManyToMany(mappedBy="projects")
+	@JsonIgnoreProperties("projects")
 	private List<Employee> employee;
 	
 	public long getId() {

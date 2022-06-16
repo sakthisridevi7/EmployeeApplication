@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity//(name="employeetbl")
 public class Employee {
 	@Id
@@ -26,10 +28,12 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name="deptId")
+	@JsonIgnoreProperties("employees")
 	private Department department;
 	
 	@ManyToMany
 	@JoinTable(name="employeeProject",joinColumns= @JoinColumn(name="empId"), inverseJoinColumns = @JoinColumn(name="projectId"))
+	@JsonIgnoreProperties("employee")
 	private List<Projects> projects;
 	
 	public long getId() {

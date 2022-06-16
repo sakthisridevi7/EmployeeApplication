@@ -1,6 +1,7 @@
 package com.edu.EmployeeApplication.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>{
 	List<Employee> getEmployeeByFullName(@Param("firstName")String firstName,@Param ("lastName") String lastName);
 
 	List<Employee> findByLastName(String lastName);
+
+	Optional<Employee> findByEmail(String string);
 
 }
