@@ -1,12 +1,16 @@
 package com.edu.EmployeeApplication.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.edu.EmployeeApplication.entity.Employee;
 import com.edu.EmployeeApplication.repository.EmployeeRepository;
 
+
+import exception.GivenIdNotFoundException;
+import exception.NoRecordFoundException;
 import exception.ResourceNotFoundException;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,16 +32,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getEmployeeList() {
 		// TODO Auto-generated method stub
-		return employeeRepository.findAll();
+		List<Employee> employees = employeeRepository.findAll();
+		if(employees.isEmpty()) {
+			throw new NoRecordFoundException();
+		}
+		else
+		{
+			return employees;
+		}
 		
 	}
 	
 	@Override
 	public Employee getEmployeeById(long id) {
-		Employee employee = new Employee();
+		/*Employee employee = new Employee();
 		employee = employeeRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFoundException("Employee","Id",id));
-		return employee;
+		return employee;*/
+		Optional<Employee> employee =  employeeRepository.findById(id);
+		if(employee.isPresent()) {
+			return employee.get();
+		}
+		else
+		{
+			throw new GivenIdNotFoundException();
+		}
 	}
 
 	@Override
