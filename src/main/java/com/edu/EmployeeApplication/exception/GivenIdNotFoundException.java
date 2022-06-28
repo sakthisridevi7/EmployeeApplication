@@ -1,4 +1,4 @@
-package exception;
+package com.edu.EmployeeApplication.exception;
 
 public class GivenIdNotFoundException extends RuntimeException {
 	

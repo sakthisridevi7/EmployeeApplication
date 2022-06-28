@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.EmployeeApplication.entity.Department;
+import com.edu.EmployeeApplication.exception.ResourceNotFoundException;
 import com.edu.EmployeeApplication.repository.DepartmentRepository;
-
-import exception.ResourceNotFoundException;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
